@@ -1,0 +1,56 @@
+{
+  "_note": "APPROVED SERVICES & PRICING. Placeholder figures — replace with Ehub's real catalogue before going live. The AI can only pick services from this list; prices are always calculated in code from these numbers, never written by the AI.",
+  "currency": "USD",
+  "services": [
+    {
+      "id": "growth-strategy-sprint",
+      "name": "Growth Strategy Sprint",
+      "description": "4-week deep dive: market and customer research, positioning, channel strategy and a 12-month growth roadmap.",
+      "billing": "one_off",
+      "price": 2500,
+      "deliverables": ["Customer & competitor research", "Positioning and messaging", "Channel strategy", "12-month growth roadmap with KPIs"],
+      "kpis": ["Roadmap approved", "Target CAC and LTV defined"],
+      "duration_weeks": 4
+    },
+    {
+      "id": "paid-acquisition",
+      "name": "Paid Acquisition Management",
+      "description": "Planning, creative direction and optimisation of Meta, Google and LinkedIn campaigns.",
+      "billing": "monthly",
+      "price": 1200,
+      "allowed_months": [3, 6, 12],
+      "deliverables": ["Campaign setup and tracking", "Weekly optimisation", "Monthly creative testing", "Monthly performance report"],
+      "kpis": ["Cost per lead", "Customer acquisition cost", "Return on ad spend"]
+    },
+    {
+      "id": "content-community",
+      "name": "Content & Community Growth",
+      "description": "Content calendar, social content production and community building to grow an engaged audience.",
+      "billing": "monthly",
+      "price": 900,
+      "allowed_months": [3, 6, 12],
+      "deliverables": ["Monthly content calendar", "12–16 social posts per month", "Community programme design", "Monthly engagement report"],
+      "kpis": ["Audience growth", "Engagement rate", "Community-sourced leads"]
+    },
+    {
+      "id": "crm-automation",
+      "name": "CRM & Marketing Automation Setup",
+      "description": "CRM setup, lead capture, lifecycle stages and automated nurture flows.",
+      "billing": "one_off",
+      "price": 1800,
+      "deliverables": ["CRM pipeline and fields", "Lead capture integrations", "Lifecycle email flows", "Team training"],
+      "kpis": ["Lead response time", "Lead-to-meeting conversion"],
+      "duration_weeks": 3
+    },
+    {
+      "id": "retention-lifecycle",
+      "name": "Retention & Lifecycle Marketing",
+      "description": "Onboarding, engagement and win-back programmes that increase repeat purchase and reduce churn.",
+      "billing": "monthly",
+      "price": 800,
+      "allowed_months": [3, 6, 12],
+      "deliverables": ["Customer journey mapping", "Onboarding and win-back sequences", "Segmentation", "Monthly retention report"],
+      "kpis": ["Churn rate", "Repeat purchase rate", "Customer lifetime value"]
+    }
+  ]
+}
