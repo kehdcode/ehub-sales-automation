@@ -3,7 +3,12 @@ import { env, optEnv } from "./config";
 
 let client: Anthropic | null = null;
 function anthropic() {
-  client ??= new Anthropic({ apiKey: env("ANTHROPIC_API_KEY") });
+  const workspace = optEnv("ANTHROPIC_WORKSPACE_ID");
+  client ??= new Anthropic({
+    apiKey: env("ANTHROPIC_API_KEY"),
+    // Needed only for API keys that aren't scoped to a workspace
+    ...(workspace ? { defaultHeaders: { "anthropic-workspace-id": workspace } } : {}),
+  });
   return client;
 }
 
