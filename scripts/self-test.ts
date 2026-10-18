@@ -92,6 +92,16 @@ const AI: Record<string, any> = {
   save_reply_intent: { intent: "accepted", summary: "They want to go ahead." },
 };
 
+// which canned answer goes with which agent (matched on the task description in the system prompt)
+const TASKS: Record<string, string> = {
+  save_prospect_research: "Save research and qualification",
+  write_paragraph: "Return the paragraph",
+  save_discovery: "Save structured intelligence from a discovery call",
+  save_proposal: "Save the proposal draft",
+  save_decision: "Classify where the prospect stands",
+  save_reply_intent: "Classify a prospect's email reply",
+};
+
 const realFetch = globalThis.fetch;
 globalThis.fetch = (async (input: any, init: any = {}) => {
   const url = new URL(typeof input === "string" ? input : input.url ?? String(input));
@@ -101,11 +111,13 @@ globalThis.fetch = (async (input: any, init: any = {}) => {
   const json = (d: any) => new Response(JSON.stringify(d), { status: 200, headers: { "content-type": "application/json" } });
   if (url.hostname === "api.hubapi.com") return json(await fakeHubspot(url, method, body));
   if (url.hostname === "api.anthropic.com") {
-    const tool = body.tools[0].name;
+    assert.ok(body.output_config?.format?.type === "json_schema", "uses structured outputs");
+    assert.ok(!body.tool_choice, "no forced tool_choice");
+    const tool = Object.keys(AI).find((k) => body.system.includes(TASKS[k]))!;
     return json({
-      id: "msg_test", type: "message", role: "assistant", model: body.model, stop_reason: "tool_use", stop_sequence: null,
+      id: "msg_test", type: "message", role: "assistant", model: body.model, stop_reason: "end_turn", stop_sequence: null,
       usage: { input_tokens: 1, output_tokens: 1 },
-      content: [{ type: "tool_use", id: "tu_1", name: tool, input: AI[tool] }],
+      content: [{ type: "text", text: JSON.stringify(AI[tool]) }],
     });
   }
   if (url.hostname.includes("prospect.test")) return new Response("<title>Prospect</title><p>Invoice financing for SMEs</p>");
