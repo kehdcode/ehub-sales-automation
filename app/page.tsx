@@ -28,6 +28,11 @@ export default function Home() {
           <b>DRY_RUN is on</b> — emails are logged, not sent. Set <code>DRY_RUN=false</code> to go live.
         </p>
       )}
+      <p style={{ marginTop: 16 }}>
+        <a href="/console" style={{ display: "inline-block", background: "#2563eb", color: "#fff", padding: "10px 16px", borderRadius: 8, textDecoration: "none", fontWeight: 600 }}>
+          Open test console →
+        </a>
+      </p>
       <h2 style={{ fontSize: 18, marginTop: 28 }}>Integrations</h2>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
         {items.map(([name, on]) => (
